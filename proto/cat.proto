@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package cat;
+
+service CatService {
+    rpc Search (CatSearchRequest) returns (CatSearchReply) {}
+}
+
+message CatSearchRequest {
+    Type type = 1;
+}
+
+message CatSearchReply {
+    repeated Cat cat = 1;
+}
+
+message Cat {
+    string name = 1;
+    Type type = 2;
+    Gender gender = 3;
+}
+
+enum Gender {
+    MALE = 0;
+    FEMALE = 1;
+}
+
+enum Type {
+    AMERICAN_SHORTHAIR = 0;
+    SCOTTISH_FOLD = 1;
+    PERSIAN = 2;
+}

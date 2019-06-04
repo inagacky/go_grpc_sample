@@ -1,23 +1,15 @@
 package main
 
 import (
-	pb "github.com/inagacky/go_grpc_sample/pb"
-	"golang.org/x/net/context"
+	"github.com/inagacky/go_grpc_sample/pb/cat"
+	"github.com/inagacky/go_grpc_sample/pb/helloworld"
+	ser "github.com/inagacky/go_grpc_sample/service"
 	"google.golang.org/grpc"
 	"log"
 	"net"
 )
 
-type greeterService struct{}
 
-func (s *greeterService) SayHello(ctx context.Context, req *pb.HelloRequest) (*pb.HelloReply, error) {
-	log.Println("call from", req.Name)
-	rsp := pb.HelloReply {
-		Message:"Hello " + req.Name + ".",
-	}
-
-	return &rsp, nil
-}
 
 func main() {
 
@@ -26,7 +18,8 @@ func main() {
 		log.Fatalln(err)
 	}
 	s := grpc.NewServer()
-	pb.RegisterGreeterServer(s, &greeterService{})
+	helloworld.RegisterGreeterServer(s, &ser.GreeterService{})
+	cat.RegisterCatServiceServer(s, &ser.CatService{})
 	s.Serve(l)
 
 }
