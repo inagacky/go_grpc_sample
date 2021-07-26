@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option go_package = "github.com/inagacky/go_grpc_sample/pb/cat";
+
 package cat;
 
 service CatService {

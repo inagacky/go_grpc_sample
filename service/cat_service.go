@@ -8,7 +8,7 @@ import (
 
 type CatService struct{}
 
-var catList = [...] *cat.Cat{
+var catList = [...] *cat.Cat {
 	{Name:"mike", Type:cat.Type_AMERICAN_SHORTHAIR},
 	{Name:"tama", Type:cat.Type_AMERICAN_SHORTHAIR},
 	{Name:"sora", Type:cat.Type_SCOTTISH_FOLD},
@@ -23,7 +23,7 @@ func (s *CatService) Search(ctx context.Context, req *cat.CatSearchRequest) (*ca
 
 	// Typeで検索する
 	result := searchByType(req.Type)
-	rsp := cat.CatSearchReply {
+	rsp :=  cat.CatSearchReply {
 		Cat:result,
 	}
 
